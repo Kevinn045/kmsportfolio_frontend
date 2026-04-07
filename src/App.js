@@ -1,7 +1,6 @@
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import React, { useEffect, useState } from "react";
-import axios from "axios";
+import { useState } from "react";
 import Navbar from "./components/Navbar";
 import Header from "./components/Header";
 import Projects from "./components/Projects";
