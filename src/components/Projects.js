@@ -20,7 +20,7 @@ function Projects() {
                         <div className="card p-3 mb-3">
                             <motion.div whileHover={{ scale: 1.05 }}>
                                 <div className="card shadow-lg p-3">
-                                    <img src={`http://127.0.0.1:8000${p.image}`} className="img-fluid" alt="" />
+                                    <img src={`https://kmsportfolio-backendy.onrender.com${p.image}`} className="img-fluid" alt="" />
                                     <h5>{p.title}</h5>
                                     <p>{p.description}</p>
                                     <a href={p.link}>View</a>
