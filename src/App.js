@@ -1,3 +1,4 @@
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useState } from "react";
@@ -7,7 +8,7 @@ import Projects from "./components/Projects";
 import Contact from "./components/Contact";
 import AddProject from "./Pages/Addprojects";
 import Login from "./Pages/Login";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+
 
 
 
@@ -20,13 +21,13 @@ function App() {
         Toggle Dark Mode
       </button>
 
-      <Router>
+      <BrowserRouter>
         <Routes>
           <Route path="/" element={<Projects />} />
           <Route path="/login" element={<Login />} />
           <Route path="/add-project" element={<AddProject />} />
         </Routes>
-      </Router>
+      </BrowserRouter>
 
       <Navbar />
       <Header />
