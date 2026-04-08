@@ -17,23 +17,17 @@ function Projects() {
             <div className="row">
                 {projects.map(p => (
                     <div className="col-md-4" key={p.id}>
-                        <div className="card p-3 mb-3">
-                            <motion.div whileHover={{ scale: 1.05 }}>
-                                <div className="card shadow-lg p-3">
-                                    <img src={`https://kmsportfolio-backendy.onrender.com${p.image}`} className="img-fluid" alt="" />
-                                    <h5>{p.title}</h5>
-                                    <p>{p.description}</p>
-                                    <a href={p.link}>View</a>
+                        <motion.div whileHover={{ scale: 1.05 }}>
+                            <div className="card shadow-lg p-3">
+                                <img src={`https://kmsportfolio-backendy.onrender.com${p.image}`} className="img-fluid" alt="" />
+                                <h5>{p.title}</h5>
+                            </div>
+                        </motion.div>
 
-                                </div>
-                            </motion.div>
-
-
-                        </div>
                     </div>
                 ))}
             </div>
-        </div>
+        </div >
     );
 }
 
