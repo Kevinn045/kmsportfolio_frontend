@@ -7,7 +7,7 @@ function Projects() {
     const [projects, setProjects] = useState([]);
 
     useEffect(() => {
-        axios.get("http://127.0.0.1:8000/api/projects/")
+        axios.get("https://kmsportfolio-backendy.onrender.com/api/projects/")
             .then(res => setProjects(res.data));
     }, []);
 
