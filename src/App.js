@@ -7,6 +7,7 @@ import Projects from "./components/Projects";
 import Contact from "./components/Contact";
 import AddProject from "./Pages/AddProject";
 import AddProject from "./Pages/Login";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 
 
@@ -19,11 +20,16 @@ function App() {
         Toggle Dark Mode
       </button>
 
+      <Router>
+        <Routes>
+          <Route path="/" element={<Projects />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/add-project" element={<AddProject />} />
+        </Routes>
+      </Router>
+
       <Navbar />
       <Header />
-      <Login />
-      <AddProject />
-      <Projects />
       <Contact />
 
 
