@@ -1,3 +1,3 @@
 useEffect(() => {
-    fetch("https://kmsportfolio-backendy.onrender.com/api/track/");
+    fetch("https://kmsportfolio-back.onrender.com/api/track/");
 }, []);

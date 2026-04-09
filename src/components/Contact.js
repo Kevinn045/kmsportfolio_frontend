@@ -11,7 +11,7 @@ function Contact() {
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        axios.post("http://127.0.0.1:8000/api/contact/", form)
+        axios.post("https://kmsportfolio-back.onrender.com/api/contact/", form)
             .then(() => alert("Message sent!"))
             .catch(() => alert("Error sending message"));
     };

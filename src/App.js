@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter } from "react-router-dom";
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useState } from "react";
@@ -22,14 +22,13 @@ function App() {
       </button>
 
       <BrowserRouter>
+        <Navbar />
         <Routes>
           <Route path="/" element={<Projects />} />
           <Route path="/login" element={<Login />} />
           <Route path="/add-project" element={<AddProject />} />
         </Routes>
       </BrowserRouter>
-
-      <Navbar />
       <Header />
       <Contact />
 

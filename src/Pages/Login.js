@@ -5,7 +5,7 @@ function Login() {
     const [data, setData] = useState({ username: "", password: "" });
 
     const login = () => {
-        axios.post("https://kmsportfolio-backendy.onrender.com/api/login/", data)
+        axios.post("https://kmsportfolio-back.onrender.com/api/login/", data)
             .then(res => {
                 localStorage.setItem("token", res.data.access);
                 alert("Logged in!");

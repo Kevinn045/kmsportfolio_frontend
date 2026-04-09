@@ -13,7 +13,7 @@ function AddProject() {
         e.preventDefault();
 
         axios.post(
-            "https://kmsportfolio-backendy.onrender.com/api/add-project/",
+            "https://kmsportfolio-back.onrender.com/api/add-project/",
             formData,
             {
                 headers: {
