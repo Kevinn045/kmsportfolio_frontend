@@ -1,15 +1,20 @@
+import { useEffect, useState } from "react";
+import axios from "axios";
+
 function Blog() {
     const [posts, setPosts] = useState([]);
 
     useEffect(() => {
-        axios.get("/api/blog/").then(res => setPosts(res.data));
+        axios.get("https://kmsportfolio-back.onrender.com/api/blog/")
+            .then(res => setPosts(res.data));
     }, []);
 
     return (
         <div className="container">
             <h2>Blog</h2>
+
             {posts.map(p => (
-                <div className="glass mb-3">
+                <div className="glass mb-3" key={p.id}>
                     <h4>{p.title}</h4>
                     <p>{p.content}</p>
                 </div>
@@ -17,4 +22,5 @@ function Blog() {
         </div>
     );
 }
-export default Blog
+
+export default Blog;
