@@ -6,7 +6,7 @@ import Navbar from "./components/Navbar";
 import Home from "./Pages/Home";
 import Blog from "./Pages/Blog";
 import Dashboard from "./Pages/Dashboard";
-import AddProject from "./Pages/Addproject";
+import AddProject from "./Pages/Addprojects";
 import Login from "./pages/Login";
 
 
