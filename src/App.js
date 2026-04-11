@@ -10,9 +10,6 @@ import AddProject from "./Pages/Addproject";
 import Login from "./pages/Login";
 
 
-import AddProject from "./Pages/Addprojects";
-import Login from "./Pages/Login";
-
 
 
 
@@ -20,7 +17,7 @@ function App() {
   const [dark, setDark] = useState(false);
 
   useEffect(() => {
-    fetch("http://127.0.0.1:8000/api/track/");
+    fetch("https://kmsportfolio-back.onrender.com/api/track/");
   }, []);
 
 
