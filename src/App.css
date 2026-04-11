@@ -12,3 +12,10 @@ h1 {
   border-radius: 15px;
   padding: 20px;
 }
+
+.chat-box {
+  background: rgba(0, 0, 0, 0.7);
+  color: white;
+  border-radius: 10px;
+  padding: 15px;
+}
