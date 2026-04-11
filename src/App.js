@@ -1,8 +1,14 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Navbar from "./components/Navbar";
+import Home from "./Pages/Home";
+import Blog from "./Pages/Blog";
+import Dashboard from "./Pages/Dashboard";
+import AddProject from "./Pages/Addproject";
+import Login from "./pages/Login";
+
 
 import AddProject from "./Pages/Addprojects";
 import Login from "./Pages/Login";
