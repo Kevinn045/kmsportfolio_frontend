@@ -7,7 +7,7 @@ import Home from "./Pages/Home";
 import Blog from "./Pages/Blog";
 import Dashboard from "./Pages/Dashboard";
 import AddProject from "./Pages/Addprojects";
-import Login from "./pages/Login";
+import Login from "./Pages/Login";
 
 
 
