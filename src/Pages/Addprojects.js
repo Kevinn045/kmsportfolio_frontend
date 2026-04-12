@@ -12,17 +12,24 @@ function AddProject() {
     const handleSubmit = (e) => {
         e.preventDefault();
 
+        const data = new FormData();
+        data.append("title", formData.title);
+        data.append("description", formData.description);
+        data.append("link", formData.link);
+        data.append("image", formData.image);
+
         axios.post(
             "https://kmsportfolio-back.onrender.com/api/add-project/",
-            formData,
+            data,
             {
                 headers: {
-                    Authorization: `Bearer ${localStorage.getItem("token")}`
+                    Authorization: `Bearer ${localStorage.getItem("token")}`,
+                    "Content-Type": "multipart/form-data"
                 }
             }
         )
             .then(() => alert("Project added!"))
-            .catch(() => alert("Not authorized"));
+            .catch(() => alert("Upload failed"));
     };
 
     return (
@@ -40,9 +47,10 @@ function AddProject() {
                     onChange={e => setFormData({ ...formData, description: e.target.value })}
                 />
 
-                <input className="form-control mb-2"
-                    placeholder="Image"
-                    onChange={e => setFormData({ ...formData, image: e.target.value })}
+                <input
+                    type="file"
+                    className="form-control mb-2"
+                    onChange={e => setFormData({ ...formData, image: e.target.files[0] })}
                 />
                 <input className="form-control mb-2"
                     placeholder="Link"
