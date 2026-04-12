@@ -1,74 +1,126 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
 
 function ChatWidget() {
     const [messages, setMessages] = useState([]);
     const [input, setInput] = useState("");
+    const chatEndRef = useRef(null);
+
+    // Auto scroll
+    useEffect(() => {
+        chatEndRef.current?.scrollIntoView({ behavior: "smooth" });
+    }, [messages]);
 
     const sendMessage = async () => {
         if (!input) return;
 
         const userMsg = { sender: "user", text: input };
-        setMessages([...messages, userMsg]);
-
-        const res = await axios.post("https://kmsportfolio-back.onrender.com/api/chat/", {
-            message: input
-        });
-
-        const botMsg = { sender: "bot", text: res.data.reply };
-
-        setMessages(prev => [...prev, botMsg]);
+        setMessages(prev => [...prev, userMsg]);
         setInput("");
+
+        // Typing indicator
+        const typingMsg = { sender: "bot", text: "Typing..." };
+        setMessages(prev => [...prev, userMsg, typingMsg]);
+
+        try {
+            const res = await axios.post("https://kmsportfolio-back.onrender.com/api/chat/", {
+                message: input
+            });
+
+            setTimeout(() => {
+                setMessages(prev => [
+                    ...prev.slice(0, -1),
+                    { sender: "bot", text: res.data.reply }
+                ]);
+            }, 800);
+
+        } catch (err) {
+            console.log(err);
+        }
     };
 
     return (
-        <div style={styles.chat}>
-            <div style={styles.box}>
-                {messages.map((m, i) => (
-                    <div key={i} style={m.sender === "user" ? styles.user : styles.bot}>
-                        {m.text}
+        <div style={styles.container}>
+            <div style={styles.chatBox}>
+                {messages.map((msg, i) => (
+                    <div
+                        key={i}
+                        style={
+                            msg.sender === "user" ? styles.userBubble : styles.botBubble
+                        }
+                    >
+                        {msg.text}
                     </div>
                 ))}
+                <div ref={chatEndRef}></div>
             </div>
 
-            <input
-                style={styles.input}
-                value={input}
-                onChange={e => setInput(e.target.value)}
-                placeholder="Ask me anything..."
-            />
-            <button onClick={sendMessage}>Send</button>
+            <div style={styles.inputArea}>
+                <input
+                    style={styles.input}
+                    value={input}
+                    onChange={e => setInput(e.target.value)}
+                    onKeyDown={(e) => e.key === "Enter" && sendMessage()}
+                    placeholder="Ask me anything..."
+                />
+                <button style={styles.button} onClick={sendMessage}>
+                    Send
+                </button>
+            </div>
         </div>
     );
 }
 
 const styles = {
-    chat: {
+    container: {
         position: "fixed",
         bottom: "20px",
         right: "20px",
-        width: "300px"
+        width: "320px",
+        fontFamily: "Arial"
     },
-    box: {
-        height: "300px",
-        overflowY: "scroll",
-        background: "#fff",
+    chatBox: {
+        height: "350px",
+        overflowY: "auto",
+        background: "#f9f9f9",
         padding: "10px",
-        borderRadius: "10px"
+        borderRadius: "10px",
+        boxShadow: "0 0 10px rgba(0,0,0,0.2)"
     },
-    user: {
+    userBubble: {
         textAlign: "right",
+        background: "#007bff",
+        color: "#fff",
+        padding: "8px 12px",
+        borderRadius: "15px",
         margin: "5px",
-        color: "blue"
+        alignSelf: "flex-end"
     },
-    bot: {
+    botBubble: {
         textAlign: "left",
-        margin: "5px",
-        color: "green"
+        background: "#e5e5ea",
+        color: "#000",
+        padding: "8px 12px",
+        borderRadius: "15px",
+        margin: "5px"
+    },
+    inputArea: {
+        display: "flex",
+        marginTop: "5px"
     },
     input: {
-        width: "100%",
-        marginTop: "5px"
+        flex: 1,
+        padding: "8px",
+        borderRadius: "5px",
+        border: "1px solid #ccc"
+    },
+    button: {
+        marginLeft: "5px",
+        padding: "8px 12px",
+        background: "#000",
+        color: "#fff",
+        border: "none",
+        borderRadius: "5px"
     }
 };
 
