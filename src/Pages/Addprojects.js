@@ -6,7 +6,7 @@ function AddProject() {
         title: "",
         description: "",
         link: "",
-        Image: ""
+        image: ""
     });
 
     const handleSubmit = (e) => {
@@ -40,6 +40,10 @@ function AddProject() {
                     onChange={e => setFormData({ ...formData, description: e.target.value })}
                 />
 
+                <input className="form-control mb-2"
+                    placeholder="Image"
+                    onChange={e => setFormData({ ...formData, image: e.target.value })}
+                />
                 <input className="form-control mb-2"
                     placeholder="Link"
                     onChange={e => setFormData({ ...formData, link: e.target.value })}

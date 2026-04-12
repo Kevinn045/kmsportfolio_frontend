@@ -14,28 +14,30 @@ function ChatWidget() {
     const sendMessage = async () => {
         if (!input) return;
 
-        const userMsg = { sender: "user", text: input };
-        setMessages(prev => [...prev, userMsg]);
+        const newMessages = [...messages, { role: "user", content: input }];
+
+        setMessages(prev => [...prev, { sender: "user", text: input }]);
         setInput("");
 
-        // Typing indicator
-        const typingMsg = { sender: "bot", text: "Typing..." };
-        setMessages(prev => [...prev, userMsg, typingMsg]);
-
         try {
-            const res = await axios.post("https://kmsportfolio-back.onrender.com/api/chat/", {
-                message: input
-            });
+            const res = await axios.post(
+                "https://kmsportfolio-back.onrender.com/api/chat/",
+                {
+                    message: input,
+                    history: newMessages
+                }
+            );
 
-            setTimeout(() => {
-                setMessages(prev => [
-                    ...prev.slice(0, -1),
-                    { sender: "bot", text: res.data.reply }
-                ]);
-            }, 800);
+            setMessages(prev => [
+                ...prev,
+                { sender: "bot", text: res.data.reply }
+            ]);
 
         } catch (err) {
-            console.log(err);
+            setMessages(prev => [
+                ...prev.slice(0, -1),
+                { sender: "bot", text: "Error, try again." }
+            ]);
         }
     };
 
