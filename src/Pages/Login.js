@@ -1,25 +1,46 @@
-import axios from "axios";
 import { useState } from "react";
+import axios from "axios";
 
 function Login() {
-    const [data, setData] = useState({ username: "", password: "" });
+    const [formData, setFormData] = useState({
+        username: "",
+        password: ""
+    });
 
-    const login = () => {
-        axios.post("https://kmsportfolio-back.onrender.com/api/login/", data)
-            .then(res => {
-                localStorage.setItem("token", res.data.access);
-                alert("Logged in!");
-            });
+    const handleLogin = async (e) => {
+        e.preventDefault();
+
+        try {
+            const res = await axios.post(
+                "https://kmsportfolio-back.onrender.com/api/token/",
+                formData
+            );
+
+            // 🔥 THIS IS THE IMPORTANT PART
+            localStorage.setItem("token", res.data.access);
+
+            alert("Login successful!");
+        } catch (err) {
+            alert("Login failed");
+        }
     };
 
     return (
-        <div className="container">
-            <input placeholder="username"
-                onChange={e => setData({ ...data, username: e.target.value })} />
-            <input type="password" placeholder="password"
-                onChange={e => setData({ ...data, password: e.target.value })} />
-            <button onClick={login}>Login</button>
-        </div>
+        <form onSubmit={handleLogin}>
+            <input
+                placeholder="Username"
+                onChange={e => setFormData({ ...formData, username: e.target.value })}
+            />
+
+            <input
+                type="password"
+                placeholder="Password"
+                onChange={e => setFormData({ ...formData, password: e.target.value })}
+            />
+
+            <button>Login</button>
+        </form>
     );
 }
-export default Login
+
+export default Login;

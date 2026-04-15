@@ -9,8 +9,15 @@ function AddProject() {
         image: ""
     });
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
+
+        const token = localStorage.getItem("token");
+
+        if (!token) {
+            alert("You must log in first");
+            return;
+        }
 
         const data = new FormData();
         data.append("title", formData.title);
@@ -18,18 +25,22 @@ function AddProject() {
         data.append("link", formData.link);
         data.append("image", formData.image);
 
-        axios.post(
-            "https://kmsportfolio-back.onrender.com/api/add-project/",
-            data,
-            {
-                headers: {
-                    Authorization: `Bearer ${localStorage.getItem("token")}`,
-                    "Content-Type": "multipart/form-data"
+        try {
+            await axios.post(
+                "https://kmsportfolio-back.onrender.com/api/add-project/",
+                data,
+                {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    },
                 }
-            }
-        )
-            .then(() => alert("Project added!"))
-            .catch(() => alert("Upload failed"));
+            );
+
+            alert("Project added!");
+        } catch (err) {
+            console.log(err.response?.data);
+            alert("Upload failed");
+        }
     };
 
     return (
