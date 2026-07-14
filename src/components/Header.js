@@ -7,7 +7,7 @@ function Header() {
                 animate={{ opacity: 1 }}
                 transition={{ duration: 1 }}
             >
-                <h1>Hi, I'm Elite Dev</h1>
+                <h1> KEVINN SIMIYU </h1>
             </motion.div>
 
         </div>
