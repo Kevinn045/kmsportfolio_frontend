@@ -18,7 +18,7 @@ function Dashboard() {
     
     const token = localStorage.getItem("access");
 
-    if (!access) {
+    if (!token) {
         return <h3>Access Denied</h3>;
     }
 
