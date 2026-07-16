@@ -1,7 +1,9 @@
 import { useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 function Login() {
+    const navigate = useNavigate();
     const [formData, setFormData] = useState({
         username: "",
         password: ""
@@ -19,7 +21,7 @@ function Login() {
             // 🔥 THIS IS THE IMPORTANT PART
             localStorage.setItem("access", res.data.access);
             localStorage.setItem("refresh", res.data.refresh);
-            window.location.href = "/dashboard";
+            navigate("/dashboard");
             alert("Login successful!");
         } catch (err) {
             alert("Login failed");
