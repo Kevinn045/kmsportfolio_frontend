@@ -25,7 +25,8 @@ function Dashboard() {
     return (
         <div className="container mt-5">
             <h2>Admin Dashboard</h2>
-
+            <h2>Welcome {user?.username}</h2>
+                <p>{user?.email}</p>
             <div className="card p-3 mb-3">
                 <h4>Projects</h4>
                 <p>Manage your projects</p>
