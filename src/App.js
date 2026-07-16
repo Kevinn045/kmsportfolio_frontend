@@ -8,7 +8,7 @@ import Blog from "./Pages/Blog";
 import Dashboard from "./Pages/Dashboard";
 import AddProject from "./Pages/Addprojects";
 import Login from "./Pages/Login";
-
+import ProtectedRoute from "./components/ProtectedRoute";
 
 
 
@@ -34,8 +34,20 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/blog" element={<Blog />} />
-          <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/add-project" element={<AddProject />} />
+          <Route
+            path="/dashboard"
+            element={
+              <ProtectedRoute>
+                  <Dashboard />
+              </ProtectedRoute>
+              }
+          />
+          <Route path="/add-project" element={
+              <ProtectedRoute>
+                  <AddProject />
+              </ProtectedRoute>
+              }
+          />
           <Route path="/login" element={<Login />} />
         </Routes>
       </BrowserRouter>
