@@ -1,4 +1,10 @@
 function Dashboard() {
+    const logout = () => {
+     localStorage.removeItem("access");
+     localStorage.removeItem("refresh");
+     window.location.href = "/login";
+    };
+    
     const token = localStorage.getItem("token");
 
     if (!token) {
@@ -24,6 +30,9 @@ function Dashboard() {
                 <h4>Analytics</h4>
                 <p>Track visitors</p>
             </div>
+            <button onClick={logout}>
+               Logout
+            </button>
         </div>
     );
 }
