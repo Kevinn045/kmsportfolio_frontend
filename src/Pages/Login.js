@@ -17,7 +17,8 @@ function Login() {
             );
 
             // 🔥 THIS IS THE IMPORTANT PART
-            localStorage.setItem("token", res.data.access);
+            localStorage.setItem("access", res.data.access);
+            localStorage.setItem("refresh", res.data.refresh);
             window.location.href = "/dashboard";
             alert("Login successful!");
         } catch (err) {
