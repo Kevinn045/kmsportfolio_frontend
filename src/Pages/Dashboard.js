@@ -5,9 +5,10 @@ function Dashboard() {
     const [user, setUser] = useState(null);
 
     useEffect(() => {
-        api.get("profile/")
-            .then((res) => setUser(res.data))
-            .catch(console.error);
+    api.get("profile/")
+        .then((res) => setUser(res.data))
+        .catch(console.error);
+}, []);
 
     const logout = () => {
      localStorage.removeItem("access");
@@ -15,9 +16,9 @@ function Dashboard() {
      window.location.href = "/login";
     };
     
-    const token = localStorage.getItem("token");
+    const token = localStorage.getItem("access");
 
-    if (!token) {
+    if (!access) {
         return <h3>Access Denied</h3>;
     }
 
