@@ -24,7 +24,9 @@ function Login() {
             navigate("/dashboard");
             alert("Login successful!");
         } catch (err) {
-            alert("Login failed");
+            console.log(err.response);
+            console.log(err.response?.data);
+            alert(JSON.stringify(err.response?.data));
         }
     };
 
