@@ -1,4 +1,14 @@
+import { useEffect, useState } from "react";
+import api from "../api";
+
 function Dashboard() {
+    const [user, setUser] = useState(null);
+
+    useEffect(() => {
+        api.get("profile/")
+            .then((res) => setUser(res.data))
+            .catch(console.error);
+
     const logout = () => {
      localStorage.removeItem("access");
      localStorage.removeItem("refresh");
