@@ -1,19 +1,20 @@
 
 import { motion } from "framer-motion";
 
-
 function Header() {
   return (
     <header className="hero-section">
+
       <div className="hero-container">
 
-        {/* Hero text */}
+        {/* Hero content */}
         <motion.div
           className="hero-content"
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 25 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
+          transition={{ duration: 0.7 }}
         >
+
           <p className="hero-eyebrow">
             BUSINESS INFORMATION TECHNOLOGY GRADUATE
           </p>
@@ -23,78 +24,142 @@ function Header() {
           </h1>
 
           <h2>
-            I build modern web applications with
-            <strong> Python, Django, React & AI.</strong>
+            I build modern web applications,
+            <br />
+            APIs and <strong>AI-powered solutions.</strong>
           </h2>
 
           <p className="hero-description">
-            I’m a Business Information Technology graduate passionate about
-            building practical, user-focused digital solutions and exploring
-            the possibilities of artificial intelligence.
+            I'm passionate about turning ideas into practical digital
+            experiences using Python, Django, React and artificial
+            intelligence.
           </p>
 
           <div className="hero-buttons">
-            <a href="#projects" className="hero-btn hero-btn-primary">
+
+            <a
+              href="#projects"
+              className="hero-btn hero-btn-primary"
+            >
               View My Projects
+              <span>→</span>
             </a>
 
-            <a href="#contact" className="hero-btn hero-btn-secondary">
-              Contact Me
+            <a
+              href="#contact"
+              className="hero-btn hero-btn-secondary"
+            >
+              Let's Talk
             </a>
+
           </div>
 
           <div className="hero-tech">
+
             <span>Python</span>
             <span>Django</span>
             <span>React</span>
             <span>AI</span>
+            <span>REST APIs</span>
+
           </div>
+
         </motion.div>
 
         {/* Hero visual */}
         <motion.div
           className="hero-visual"
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
+          initial={{ opacity: 0, x: 30 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.8, delay: 0.15 }}
         >
+
           <div className="hero-card">
+
+            {/* Card header */}
             <div className="hero-card-top">
-              <span className="status-dot"></span>
-              <span>Available for opportunities</span>
+
+              <div className="availability">
+                <span className="status-dot"></span>
+
+                <span>
+                  Available for opportunities
+                </span>
+              </div>
+
+              <div className="window-controls">
+                <span></span>
+                <span></span>
+                <span></span>
+              </div>
+
             </div>
 
+            {/* Code */}
             <div className="code-window">
-              <span className="code-comment">
-                {'//what I enjoy building'}
-              </span>
 
-              <span>
-                <b>const</b> developer = {"{"}
-              </span>
+              <div className="code-line code-comment">
+                // what I enjoy building
+              </div>
 
-              <span className="code-indent">
-                name: <strong>"Kevin Muse"</strong>,
-              </span>
+              <div className="code-line">
+                <span className="code-keyword">const</span>{" "}
+                developer = {"{"}
+              </div>
 
-              <span className="code-indent">
-                stack: <strong>"Python + Django + React"</strong>,
-              </span>
+              <div className="code-line code-indent">
+                name: <span className="code-string">
+                  "Kevin Muse"
+                </span>,
+              </div>
 
-              <span className="code-indent">
-                interest: <strong>"AI & Web Development"</strong>
-              </span>
+              <div className="code-line code-indent">
+                stack: <span className="code-string">
+                  "Python + Django + React"
+                </span>,
+              </div>
 
-              <span>{"}"}</span>
+              <div className="code-line code-indent">
+                interest: <span className="code-string">
+                  "AI & Web Development"
+                </span>,
+              </div>
+
+              <div className="code-line">
+                {"}"}
+              </div>
+
             </div>
+
+            {/* Card footer */}
+            <div className="hero-card-footer">
+
+              <span>Backend</span>
+              <span>Frontend</span>
+              <span>AI</span>
+
+            </div>
+
           </div>
+
         </motion.div>
 
       </div>
+
+      {/* Scroll indicator */}
+      <motion.div
+        className="hero-scroll"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1.2 }}
+      >
+        <span>Scroll to explore</span>
+        <span className="scroll-arrow">↓</span>
+      </motion.div>
+
     </header>
   );
 }
 
 export default Header;
-
 

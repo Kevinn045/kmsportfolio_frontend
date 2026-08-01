@@ -2397,6 +2397,498 @@ a {
   }
 }
 
+/* =================================
+   HERO SECTION
+================================= */
+
+.hero-section {
+  position: relative;
+
+  min-height: calc(100vh - 70px);
+
+  display: flex;
+  align-items: center;
+
+  padding: 90px 0 120px;
+
+  overflow: hidden;
+
+  background:
+    radial-gradient(
+      circle at 75% 45%,
+      rgba(37, 99, 235, 0.10),
+      transparent 35%
+    ),
+    var(--bg-primary);
+}
+
+.hero-container {
+  width: min(1150px, 92%);
+
+  margin: 0 auto;
+
+  display: grid;
+
+  grid-template-columns: 1.05fr 0.95fr;
+
+  align-items: center;
+
+  gap: 70px;
+}
+
+/* =================================
+   HERO CONTENT
+================================= */
+
+.hero-content {
+  max-width: 680px;
+}
+
+.hero-eyebrow {
+  margin-bottom: 20px;
+
+  color: var(--accent);
+
+  font-size: 0.75rem;
+
+  font-weight: 800;
+
+  letter-spacing: 2px;
+}
+
+.hero-content h1 {
+  margin: 0 0 22px;
+
+  color: var(--text-primary);
+
+  font-size: clamp(3rem, 7vw, 5.5rem);
+
+  line-height: 0.98;
+
+  letter-spacing: -3px;
+}
+
+.hero-content h1 span {
+  display: block;
+
+  color: var(--accent);
+}
+
+.hero-content h2 {
+  margin-bottom: 25px;
+
+  color: var(--text-primary);
+
+  font-size: clamp(1.35rem, 3vw, 2rem);
+
+  line-height: 1.4;
+
+  font-weight: 500;
+}
+
+.hero-content h2 strong {
+  color: var(--accent);
+
+  font-weight: 700;
+}
+
+.hero-description {
+  max-width: 620px;
+
+  margin-bottom: 32px;
+
+  color: var(--text-secondary);
+
+  font-size: 1.05rem;
+
+  line-height: 1.8;
+}
+
+/* =================================
+   HERO BUTTONS
+================================= */
+
+.hero-buttons {
+  display: flex;
+
+  flex-wrap: wrap;
+
+  gap: 13px;
+
+  margin-bottom: 30px;
+}
+
+.hero-btn {
+  display: inline-flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 10px;
+
+  min-height: 48px;
+
+  padding: 0 20px;
+
+  border-radius: 8px;
+
+  font-size: 0.9rem;
+
+  font-weight: 700;
+
+  text-decoration: none;
+
+  transition:
+    transform 0.2s ease,
+    background-color 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.hero-btn:hover {
+  transform: translateY(-2px);
+}
+
+.hero-btn-primary {
+  background: var(--accent);
+
+  color: white;
+}
+
+.hero-btn-primary:hover {
+  background: var(--accent-hover);
+
+  color: white;
+}
+
+.hero-btn-primary span {
+  font-size: 1.1rem;
+}
+
+.hero-btn-secondary {
+  border: 1px solid var(--border-color);
+
+  background: var(--card-bg);
+
+  color: var(--text-primary);
+}
+
+.hero-btn-secondary:hover {
+  border-color: var(--accent);
+
+  color: var(--accent);
+}
+
+/* =================================
+   TECHNOLOGY TAGS
+================================= */
+
+.hero-tech {
+  display: flex;
+
+  flex-wrap: wrap;
+
+  gap: 8px;
+}
+
+.hero-tech span {
+  padding: 6px 10px;
+
+  border: 1px solid var(--border-color);
+
+  border-radius: 5px;
+
+  background: var(--bg-secondary);
+
+  color: var(--text-secondary);
+
+  font-size: 0.72rem;
+
+  font-weight: 600;
+}
+
+/* =================================
+   HERO CODE CARD
+================================= */
+
+.hero-visual {
+  width: 100%;
+}
+
+.hero-card {
+  position: relative;
+
+  width: 100%;
+
+  overflow: hidden;
+
+  border: 1px solid var(--border-color);
+
+  border-radius: 18px;
+
+  background: var(--card-bg);
+
+  box-shadow: var(--shadow);
+}
+
+/* Card top */
+
+.hero-card-top {
+  min-height: 52px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  padding: 0 18px;
+
+  border-bottom: 1px solid var(--border-color);
+
+  background: var(--bg-secondary);
+
+  color: var(--text-secondary);
+
+  font-size: 0.75rem;
+}
+
+.availability {
+  display: flex;
+
+  align-items: center;
+
+  gap: 8px;
+}
+
+.status-dot {
+  width: 8px;
+
+  height: 8px;
+
+  border-radius: 50%;
+
+  background: #22c55e;
+
+  box-shadow: 0 0 10px rgba(34, 197, 94, 0.5);
+}
+
+.window-controls {
+  display: flex;
+
+  gap: 5px;
+}
+
+.window-controls span {
+  width: 7px;
+
+  height: 7px;
+
+  border-radius: 50%;
+
+  background: var(--border-color);
+}
+
+/* Code window */
+
+.code-window {
+  min-height: 300px;
+
+  padding: 30px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  justify-content: center;
+
+  gap: 8px;
+
+  background: #111827;
+
+  color: #e5e7eb;
+
+  font-family:
+    "Courier New",
+    Courier,
+    monospace;
+
+  font-size: 0.85rem;
+
+  line-height: 1.8;
+}
+
+.code-line {
+  display: block;
+}
+
+.code-comment {
+  margin-bottom: 12px;
+
+  color: #64748b;
+}
+
+.code-keyword {
+  color: #c084fc;
+}
+
+.code-string {
+  color: #86efac;
+}
+
+.code-indent {
+  padding-left: 25px;
+}
+
+/* Card footer */
+
+.hero-card-footer {
+  display: flex;
+
+  gap: 8px;
+
+  padding: 15px 18px;
+
+  border-top: 1px solid var(--border-color);
+
+  background: var(--bg-secondary);
+}
+
+.hero-card-footer span {
+  padding: 5px 9px;
+
+  border-radius: 4px;
+
+  background: var(--card-bg);
+
+  color: var(--text-secondary);
+
+  font-size: 0.7rem;
+
+  font-weight: 700;
+}
+
+/* =================================
+   SCROLL INDICATOR
+================================= */
+
+.hero-scroll {
+  position: absolute;
+
+  bottom: 30px;
+
+  left: 50%;
+
+  transform: translateX(-50%);
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  gap: 5px;
+
+  color: var(--text-secondary);
+
+  font-size: 0.7rem;
+
+  letter-spacing: 1px;
+
+  text-transform: uppercase;
+}
+
+.scroll-arrow {
+  font-size: 1rem;
+}
+
+/* =================================
+   HERO RESPONSIVE
+================================= */
+
+@media (max-width: 900px) {
+
+  .hero-section {
+    padding: 70px 0 100px;
+  }
+
+  .hero-container {
+    grid-template-columns: 1fr;
+
+    gap: 55px;
+  }
+
+  .hero-content {
+    max-width: 750px;
+
+    margin: 0 auto;
+
+    text-align: center;
+  }
+
+  .hero-description {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .hero-buttons {
+    justify-content: center;
+  }
+
+  .hero-tech {
+    justify-content: center;
+  }
+
+  .hero-visual {
+    max-width: 650px;
+
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 600px) {
+
+  .hero-section {
+    min-height: auto;
+
+    padding: 65px 0 90px;
+  }
+
+  .hero-content h1 {
+    letter-spacing: -2px;
+  }
+
+  .hero-description {
+    font-size: 0.95rem;
+  }
+
+  .hero-buttons {
+    flex-direction: column;
+  }
+
+  .hero-btn {
+    width: 100%;
+  }
+
+  .code-window {
+    min-height: 260px;
+
+    padding: 22px 18px;
+
+    font-size: 0.72rem;
+
+    overflow-x: auto;
+  }
+
+  .hero-card-top {
+    font-size: 0.65rem;
+  }
+
+  .hero-scroll {
+    display: none;
+  }
+}
+
 
 
 
