@@ -1,129 +1,251 @@
-import React, { useState, useEffect, useRef } from "react";
+
+import { useEffect, useRef, useState } from "react";
 import axios from "axios";
+import { motion, AnimatePresence } from "framer-motion";
+
+const API_URL = "https://kmsportfolio-back.onrender.com";
 
 function ChatWidget() {
-    const [messages, setMessages] = useState([]);
-    const [input, setInput] = useState("");
-    const chatEndRef = useRef(null);
+  const [messages, setMessages] = useState([
+    {
+      sender: "bot",
+      text: "Hi! I'm Kevin's AI assistant. Ask me about his skills, projects, experience, or background.",
+    },
+  ]);
 
-    // Auto scroll
-    useEffect(() => {
-        chatEndRef.current?.scrollIntoView({ behavior: "smooth" });
-    }, [messages]);
+  const [input, setInput] = useState("");
+  const [isOpen, setIsOpen] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
-    const sendMessage = async () => {
-        if (!input) return;
+  const chatEndRef = useRef(null);
+  const inputRef = useRef(null);
 
-        const newMessages = [...messages, { role: "user", content: input }];
+  // Auto-scroll to newest message
+  useEffect(() => {
+    chatEndRef.current?.scrollIntoView({
+      behavior: "smooth",
+    });
+  }, [messages, isLoading]);
 
-        setMessages(prev => [...prev, { sender: "user", text: input }]);
-        setInput("");
+  // Focus input when chat opens
+  useEffect(() => {
+    if (isOpen) {
+      setTimeout(() => {
+        inputRef.current?.focus();
+      }, 250);
+    }
+  }, [isOpen]);
 
-        try {
-            const res = await axios.post(
-                "https://kmsportfolio-back.onrender.com/api/chat/",
-                {
-                    message: input,
-                    history: newMessages
-                }
-            );
+  const sendMessage = async () => {
+    const trimmedInput = input.trim();
 
-            setMessages(prev => [
-                ...prev,
-                { sender: "bot", text: res.data.reply }
-            ]);
+    if (!trimmedInput || isLoading) return;
 
-        } catch (err) {
-            setMessages(prev => [
-                ...prev.slice(0, -1),
-                { sender: "bot", text: "Error, try again." }
-            ]);
-        }
+    const userMessage = {
+      sender: "user",
+      text: trimmedInput,
     };
 
-    return (
-        <div style={styles.container}>
-            <div style={styles.chatBox}>
-                {messages.map((msg, i) => (
-                    <div
-                        key={i}
-                        style={
-                            msg.sender === "user" ? styles.userBubble : styles.botBubble
-                        }
-                    >
-                        {msg.text}
-                    </div>
-                ))}
-                <div ref={chatEndRef}></div>
-            </div>
+    setMessages((prev) => [...prev, userMessage]);
+    setInput("");
+    setIsLoading(true);
 
-            <div style={styles.inputArea}>
-                <input
-                    style={styles.input}
-                    value={input}
-                    onChange={e => setInput(e.target.value)}
-                    onKeyDown={(e) => e.key === "Enter" && sendMessage()}
-                    placeholder="Ask me anything..."
-                />
-                <button style={styles.button} onClick={sendMessage}>
-                    Send
-                </button>
-            </div>
-        </div>
-    );
-}
+    try {
+      const history = messages.map((message) => ({
+        role: message.sender === "user" ? "user" : "model",
+        content: message.text,
+      }));
 
-const styles = {
-    container: {
-        position: "fixed",
-        bottom: "20px",
-        right: "20px",
-        width: "320px",
-        fontFamily: "Arial"
-    },
-    chatBox: {
-        height: "350px",
-        overflowY: "auto",
-        background: "#f9f9f9",
-        padding: "10px",
-        borderRadius: "10px",
-        boxShadow: "0 0 10px rgba(0,0,0,0.2)"
-    },
-    userBubble: {
-        textAlign: "right",
-        background: "#007bff",
-        color: "#fff",
-        padding: "8px 12px",
-        borderRadius: "15px",
-        margin: "5px",
-        alignSelf: "flex-end"
-    },
-    botBubble: {
-        textAlign: "left",
-        background: "#e5e5ea",
-        color: "#000",
-        padding: "8px 12px",
-        borderRadius: "15px",
-        margin: "5px"
-    },
-    inputArea: {
-        display: "flex",
-        marginTop: "5px"
-    },
-    input: {
-        flex: 1,
-        padding: "8px",
-        borderRadius: "5px",
-        border: "1px solid #ccc"
-    },
-    button: {
-        marginLeft: "5px",
-        padding: "8px 12px",
-        background: "#000",
-        color: "#fff",
-        border: "none",
-        borderRadius: "5px"
+      const response = await axios.post(`${API_URL}/api/chat/`, {
+        message: trimmedInput,
+        history,
+      });
+
+      setMessages((prev) => [
+        ...prev,
+        {
+          sender: "bot",
+          text:
+            response.data.reply ||
+            "I couldn't generate a response. Please try again.",
+        },
+      ]);
+    } catch (error) {
+      console.error("AI chat error:", error);
+
+      setMessages((prev) => [
+        ...prev,
+        {
+          sender: "bot",
+          text: "I'm having trouble connecting right now. Please try again in a moment.",
+        },
+      ]);
+    } finally {
+      setIsLoading(false);
     }
-};
+  };
+
+  const handleKeyDown = (event) => {
+    if (event.key === "Enter" && !event.shiftKey) {
+      event.preventDefault();
+      sendMessage();
+    }
+  };
+
+  return (
+    <div className="ai-widget">
+
+      {/* Chat window */}
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            className="ai-chat-window"
+            initial={{
+              opacity: 0,
+              y: 20,
+              scale: 0.95,
+            }}
+            animate={{
+              opacity: 1,
+              y: 0,
+              scale: 1,
+            }}
+            exit={{
+              opacity: 0,
+              y: 20,
+              scale: 0.95,
+            }}
+            transition={{
+              duration: 0.2,
+            }}
+          >
+
+            {/* Header */}
+            <div className="ai-chat-header">
+
+              <div className="ai-profile">
+
+                <div className="ai-avatar">
+                  AI
+                </div>
+
+                <div>
+                  <h3>Kevin's AI Assistant</h3>
+
+                  <div className="ai-status">
+                    <span></span>
+                    Online
+                  </div>
+                </div>
+
+              </div>
+
+              <button
+                className="ai-close-button"
+                onClick={() => setIsOpen(false)}
+                aria-label="Close AI assistant"
+              >
+                ×
+              </button>
+
+            </div>
+
+            {/* Messages */}
+            <div className="ai-messages">
+
+              {messages.map((message, index) => (
+                <div
+                  key={index}
+                  className={
+                    message.sender === "user"
+                      ? "ai-message user-message"
+                      : "ai-message bot-message"
+                  }
+                >
+                  {message.sender === "bot" && (
+                    <div className="message-avatar">
+                      AI
+                    </div>
+                  )}
+
+                  <div className="message-bubble">
+                    {message.text}
+                  </div>
+                </div>
+              ))}
+
+              {/* Loading */}
+              {isLoading && (
+                <div className="ai-message bot-message">
+
+                  <div className="message-avatar">
+                    AI
+                  </div>
+
+                  <div className="message-bubble ai-typing">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                  </div>
+
+                </div>
+              )}
+
+              <div ref={chatEndRef}></div>
+
+            </div>
+
+            {/* Input */}
+            <div className="ai-input-area">
+
+              <input
+                ref={inputRef}
+                type="text"
+                value={input}
+                onChange={(event) => setInput(event.target.value)}
+                onKeyDown={handleKeyDown}
+                placeholder="Ask about Kevin..."
+                disabled={isLoading}
+                aria-label="Ask Kevin's AI assistant"
+              />
+
+              <button
+                onClick={sendMessage}
+                disabled={!input.trim() || isLoading}
+                aria-label="Send message"
+              >
+                ↑
+              </button>
+
+            </div>
+
+            <div className="ai-footer">
+              Powered by Gemini AI
+            </div>
+
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Floating button */}
+      <motion.button
+        className={`ai-floating-button ${
+          isOpen ? "ai-button-open" : ""
+        }`}
+        onClick={() => setIsOpen((prev) => !prev)}
+        whileHover={{ scale: 1.05 }}
+        whileTap={{ scale: 0.95 }}
+        aria-label={
+          isOpen
+            ? "Close AI assistant"
+            : "Open AI assistant"
+        }
+      >
+        {isOpen ? "×" : "AI"}
+      </motion.button>
+
+    </div>
+  );
+}
 
 export default ChatWidget;
