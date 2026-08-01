@@ -1,6 +1,6 @@
 
 import { motion } from "framer-motion";
-import { Link } from "react-router-dom";
+
 
 function Header() {
   return (
@@ -66,7 +66,7 @@ function Header() {
 
             <div className="code-window">
               <span className="code-comment">
-                // What I enjoy building
+                {'//what I enjoy building'}
               </span>
 
               <span>
