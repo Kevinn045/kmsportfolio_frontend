@@ -99,7 +99,7 @@ function Header() {
             <div className="code-window">
 
               <div className="code-line code-comment">
-                // what I enjoy building
+                {'//What I enjoy building'}
               </div>
 
               <div className="code-line">
