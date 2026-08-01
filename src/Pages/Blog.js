@@ -1,5 +1,6 @@
 
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import axios from "axios";
 import { motion } from "framer-motion";
 
@@ -158,18 +159,12 @@ function Blog() {
                     <p className="blog-excerpt">
                       {getExcerpt(post.content)}
                     </p>
-
-                    <button
-                      type="button"
-                      className="blog-read-more"
-                      onClick={() =>
-                        alert(
-                          "Full article view will be added in the next step."
-                        )
-                      }
+                    <Link
+                        to={`/blog/${post.id}`}
+                        className="blog-read-more"
                     >
-                      Read Article →
-                    </button>
+                        Read Article →
+                    </Link>
 
                   </div>
                 </motion.article>

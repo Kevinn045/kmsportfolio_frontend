@@ -11,6 +11,7 @@ import Dashboard from "./Pages/Dashboard";
 import AddProject from "./Pages/Addprojects";
 import Login from "./Pages/Login";
 import ProtectedRoute from "./components/ProtectedRoute";
+import BlogPost from "./Pages/BlogPost";
 
 function App() {
   const [dark, setDark] = useState(() => {
@@ -39,6 +40,8 @@ function App() {
             <Route path="/" element={<Home />} />
 
             <Route path="/blog" element={<Blog />} />
+
+            <Route path="/blog/:id" element={<BlogPost />} />
 
             <Route
               path="/dashboard"
