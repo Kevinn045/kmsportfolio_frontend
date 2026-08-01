@@ -139,9 +139,9 @@ function Home() {
       </section>
 
       {/* Projects */}
-      <section id="projects">
-        <Projects />
-      </section>
+    
+      <Projects />
+    
 
       {/* Contact */}
       <section id="contact">
