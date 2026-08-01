@@ -1,12 +1,16 @@
 
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
-function Navbar({ dark, setDark }) {
-  const [menuOpen, setMenuOpen] = useState(false);
+function Navbar() {
+  const navigate = useNavigate();
 
-  const closeMenu = () => {
-    setMenuOpen(false);
+  const token = localStorage.getItem("access");
+
+  const handleLogout = () => {
+    localStorage.removeItem("access");
+    localStorage.removeItem("refresh");
+
+    navigate("/login");
   };
 
   return (
@@ -14,61 +18,60 @@ function Navbar({ dark, setDark }) {
       <div className="navbar-container">
 
         {/* Brand */}
-        <Link to="/" className="navbar-brand-custom" onClick={closeMenu}>
-          <span className="brand-mark">K</span>
-          <span>Kevin Muse</span>
+        <Link to="/" className="navbar-brand">
+          Kevin<span>.</span>
         </Link>
 
-        {/* Desktop Navigation */}
-        <div className={`navbar-links ${menuOpen ? "mobile-open" : ""}`}>
+        {/* Navigation */}
+        <div className="navbar-links">
 
-          <Link to="/" onClick={closeMenu}>
-            Home
-          </Link>
-
-          <a href="/#about" onClick={closeMenu}>
+          <a href="/#about">
             About
           </a>
 
-          <a href="/#skills" onClick={closeMenu}>
+          <a href="/#skills">
             Skills
           </a>
 
-          <a href="/#projects" onClick={closeMenu}>
+          <a href="/#projects">
             Projects
           </a>
 
-          <Link to="/blog" onClick={closeMenu}>
+          <Link to="/blog">
             Blog
           </Link>
 
-          <a href="/#contact" onClick={closeMenu}>
+          <a href="/#contact">
             Contact
           </a>
 
-          {/* Theme toggle */}
-          <button
-            className="theme-toggle"
-            onClick={() => setDark(!dark)}
-            aria-label="Toggle dark mode"
-            title={dark ? "Switch to light mode" : "Switch to dark mode"}
-          >
-            {dark ? "☀️" : "🌙"}
-          </button>
+          {/* Admin navigation */}
+          {token && (
+            <Link to="/dashboard" className="navbar-dashboard">
+              Dashboard
+            </Link>
+          )}
+
+          {!token ? (
+            <Link to="/login" className="navbar-login">
+              Login
+            </Link>
+          ) : (
+            <button
+              type="button"
+              onClick={handleLogout}
+              className="navbar-logout"
+            >
+              Logout
+            </button>
+          )}
+
         </div>
 
-        {/* Mobile menu button */}
-        <button
-          className="mobile-menu-button"
-          onClick={() => setMenuOpen(!menuOpen)}
-          aria-label="Toggle navigation menu"
-          aria-expanded={menuOpen}
-        >
-          {menuOpen ? "✕" : "☰"}
-        </button>
       </div>
     </nav>
   );
 }
 
 export default Navbar;
+
