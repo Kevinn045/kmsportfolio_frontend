@@ -3,7 +3,6 @@ import { motion } from "framer-motion";
 function Header() {
   return (
     <header className="hero-section">
-
       <div className="hero-container">
 
         {/* Hero content */}
@@ -15,7 +14,7 @@ function Header() {
         >
 
           <p className="hero-eyebrow">
-            BUSINESS INFORMATION TECHNOLOGY GRADUATE
+            BUSINESS INFORMATION TECHNOLOGY PROFESSIONAL
           </p>
 
           <h1>
@@ -23,15 +22,17 @@ function Header() {
           </h1>
 
           <h2>
-            I build modern web applications,
+            I bridge <strong>business, technology</strong>
             <br />
-            APIs and <strong>AI-powered solutions.</strong>
+            and digital solutions.
           </h2>
 
           <p className="hero-description">
-            I'm passionate about turning ideas into practical digital
-            experiences using Python, Django, React and artificial
-            intelligence.
+            I'm a Business Information Technology graduate with a broad
+            interest in software development, IT support, business systems,
+            data, artificial intelligence and digital transformation.
+            I enjoy using technology to solve practical problems and help
+            organizations work smarter.
           </p>
 
           <div className="hero-buttons">
@@ -40,7 +41,7 @@ function Header() {
               href="#projects"
               className="hero-btn hero-btn-primary"
             >
-              View My Projects
+              Explore My Work
               <span>→</span>
             </a>
 
@@ -54,11 +55,11 @@ function Header() {
           </div>
 
           <div className="hero-tech">
-            <span>Python</span>
-            <span>Django</span>
-            <span>React</span>
-            <span>AI</span>
-            <span>REST APIs</span>
+            <span>Software Development</span>
+            <span>IT Support</span>
+            <span>Business Systems</span>
+            <span>Data</span>
+            <span>AI & Automation</span>
           </div>
 
         </motion.div>
