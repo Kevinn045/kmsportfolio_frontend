@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import axios from "axios";
 import { motion } from "framer-motion";
 
@@ -146,10 +147,13 @@ function Blog() {
                         : post.content}
                     </p>
 
-                    <button className="read-article-button">
-                      Read Article
-                      <span>→</span>
-                    </button>
+                    <Link
+                     to={`/blog/${post.id}`}
+                     className="read-article-button"
+                    >
+                     Read Article
+                     <span>→</span>
+                    </Link>
 
                   </div>
 

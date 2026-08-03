@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import axios from "axios";
@@ -16,11 +15,14 @@ function BlogPost() {
   useEffect(() => {
     const fetchPost = async () => {
       try {
-        const response = await axios.get(`${API_URL}/api/blog/${id}/`);
+        const response = await axios.get(
+          `${API_URL}/api/blog/${id}/`
+        );
+
         setPost(response.data);
       } catch (err) {
         console.error("Failed to load article:", err);
-        setError("Unable to load this article.");
+        setError("This article could not be found.");
       } finally {
         setLoading(false);
       }
@@ -29,41 +31,23 @@ function BlogPost() {
     fetchPost();
   }, [id]);
 
-  const formatDate = (date) => {
-    if (!date) return "";
-
-    return new Date(date).toLocaleDateString("en-KE", {
-      year: "numeric",
-      month: "long",
-      day: "numeric",
-    });
-  };
-
   if (loading) {
     return (
-      <main className="article-page">
-        <div className="article-message">
-          <div className="project-spinner"></div>
-          <p>Loading article...</p>
-        </div>
+      <main className="article-status">
+        <p>Loading article...</p>
       </main>
     );
   }
 
   if (error || !post) {
     return (
-      <main className="article-page">
-        <div className="article-message">
-          <h2>Article not found</h2>
+      <main className="article-status">
+        <h2>Article unavailable</h2>
+        <p>{error}</p>
 
-          <p>
-            {error || "The article you're looking for doesn't exist."}
-          </p>
-
-          <Link to="/blog" className="article-back-button">
-            ← Back to Blog
-          </Link>
-        </div>
+        <Link to="/blog" className="article-back-button">
+          ← Back to Blog
+        </Link>
       </main>
     );
   }
@@ -71,78 +55,108 @@ function BlogPost() {
   return (
     <main className="article-page">
 
-      <motion.article
-        className="article-container"
-        initial={{ opacity: 0, y: 25 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
-      >
+      {/* Article header */}
+      <section className="article-header">
 
-        {/* Back link */}
-        <Link to="/blog" className="article-back">
-          ← Back to Blog
-        </Link>
+        <div className="article-header-inner">
 
-        {/* Header */}
-        <header className="article-header">
+          <Link to="/blog" className="article-back-link">
+            ← Back to Blog
+          </Link>
 
-          <div className="article-meta">
-            <span>ARTICLE</span>
+          <motion.p
+            className="section-label"
+            initial={{ opacity: 0, y: 15 }}
+            animate={{ opacity: 1, y: 0 }}
+          >
+            ARTICLE
+          </motion.p>
 
-            {post.created && (
-              <>
-                <span>•</span>
-                <time dateTime={post.created}>
-                  {formatDate(post.created)}
-                </time>
-              </>
-            )}
-          </div>
+          <motion.h1
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+          >
+            {post.title}
+          </motion.h1>
 
-          <h1>{post.title}</h1>
+          <motion.div
+            className="article-meta"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.2 }}
+          >
+            <span>
+              {new Date(post.created).toLocaleDateString(
+                "en-US",
+                {
+                  year: "numeric",
+                  month: "long",
+                  day: "numeric",
+                }
+              )}
+            </span>
 
-          {post.updated &&
-            post.created &&
-            post.updated !== post.created && (
-              <p className="article-updated">
-                Updated {formatDate(post.updated)}
-              </p>
-            )}
+            <span>•</span>
 
-        </header>
+            <span>Kevin Muse</span>
+          </motion.div>
 
-        {/* Featured image */}
-        {post.image && (
-          <div className="article-image-wrapper">
-            <img
-              src={`${API_URL}${post.image}`}
-              alt={post.title}
-              className="article-image"
-            />
-          </div>
-        )}
+        </div>
 
-        {/* Article content */}
-        <div className="article-body">
-          {post.content
-            .split("\n")
-            .map((paragraph, index) => (
+      </section>
+
+
+      {/* Article */}
+      <section className="article-content-section">
+
+        <div className="article-container">
+
+          {post.image && (
+            <motion.div
+              className="article-cover"
+              initial={{ opacity: 0, y: 25 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7 }}
+            >
+              <img
+                src={`${API_URL}${post.image}`}
+                alt={post.title}
+              />
+            </motion.div>
+          )}
+
+
+          <motion.article
+            className="article-body"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2 }}
+          >
+            {post.content.split("\n").map((paragraph, index) => (
               paragraph.trim() && (
                 <p key={index}>
                   {paragraph}
                 </p>
               )
             ))}
+          </motion.article>
+
+
+          <div className="article-footer">
+
+            <Link
+              to="/blog"
+              className="article-back-button"
+            >
+              ← Back to all articles
+            </Link>
+
+          </div>
+
         </div>
 
-        {/* Bottom navigation */}
-        <div className="article-footer">
-          <Link to="/blog" className="article-back-button">
-            ← More Articles
-          </Link>
-        </div>
-
-      </motion.article>
+      </section>
 
     </main>
   );

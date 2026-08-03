@@ -70,6 +70,10 @@ function App() {
                </ProtectedRoute>
               }
             /> 
+            <Route
+             path="/blog/:id"
+             element={<BlogPost />}
+            />
 
             <Route path="/login" element={<Login />} />
           </Routes>
