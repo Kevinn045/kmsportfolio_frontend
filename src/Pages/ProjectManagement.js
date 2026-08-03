@@ -133,23 +133,41 @@ function ProjectManagement() {
 
   const handleDelete = async (id) => {
     const confirmed = window.confirm(
-      "Are you sure you want to delete this project?"
+        "Are you sure you want to delete this project?"
     );
 
     if (!confirmed) return;
 
     try {
-      await api.delete(`projects/${id}/manage/`);
+        console.log("Deleting project:", id);
 
-      setProjects((prev) =>
-        prev.filter((project) => project.id !== id)
-      );
+        const response = await api.delete(
+            `projects/${id}/manage/`
+        );
+
+        console.log("Delete response:", response);
+
+        setProjects((prev) =>
+            prev.filter((project) => project.id !== id)
+        );
+
+        alert("Project deleted successfully!");
+
     } catch (error) {
-      console.error(error);
-      alert("Failed to delete project.");
-    }
-  };
+        console.error(
+            "DELETE ERROR:",
+            error.response?.status,
+            error.response?.data,
+            error
+        );
 
+        alert(
+            `Delete failed: ${
+                error.response?.status || "Unknown error"
+            }`
+        );
+    }
+};
   return (
     <main className="project-management-page">
 
