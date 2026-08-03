@@ -1,4 +1,3 @@
-
 import { motion } from "framer-motion";
 
 function Header() {
@@ -55,13 +54,11 @@ function Header() {
           </div>
 
           <div className="hero-tech">
-
             <span>Python</span>
             <span>Django</span>
             <span>React</span>
             <span>AI</span>
             <span>REST APIs</span>
-
           </div>
 
         </motion.div>
@@ -74,71 +71,18 @@ function Header() {
           transition={{ duration: 0.8, delay: 0.15 }}
         >
 
-          <div className="hero-card">
+          <div className="hero-photo-wrapper">
 
-            {/* Card header */}
-            <div className="hero-card-top">
-
-              <div className="availability">
-                <span className="status-dot"></span>
-
-                <span>
-                  Available for opportunities
-                </span>
-              </div>
-
-              <div className="window-controls">
-                <span></span>
-                <span></span>
-                <span></span>
-              </div>
-
+            <div className="hero-availability">
+              <span className="status-dot"></span>
+              <span>Available for opportunities</span>
             </div>
 
-            {/* Code */}
-            <div className="code-window">
-
-              <div className="code-line code-comment">
-                {'//What I enjoy building'}
-              </div>
-
-              <div className="code-line">
-                <span className="code-keyword">const</span>{" "}
-                developer = {"{"}
-              </div>
-
-              <div className="code-line code-indent">
-                name: <span className="code-string">
-                  "Kevin Muse"
-                </span>,
-              </div>
-
-              <div className="code-line code-indent">
-                stack: <span className="code-string">
-                  "Python + Django + React"
-                </span>,
-              </div>
-
-              <div className="code-line code-indent">
-                interest: <span className="code-string">
-                  "AI & Web Development"
-                </span>,
-              </div>
-
-              <div className="code-line">
-                {"}"}
-              </div>
-
-            </div>
-
-            {/* Card footer */}
-            <div className="hero-card-footer">
-
-              <span>Backend</span>
-              <span>Frontend</span>
-              <span>AI</span>
-
-            </div>
+            <img
+              src="/profile.png"
+              alt="Kevin Muse"
+              className="hero-photo"
+            />
 
           </div>
 
@@ -162,4 +106,3 @@ function Header() {
 }
 
 export default Header;
-
