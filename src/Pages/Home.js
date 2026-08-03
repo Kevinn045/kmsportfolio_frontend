@@ -68,7 +68,7 @@ function Home() {
 
         </div>
       </section>
-
+      <Expertise />
       {/* Skills */}
       <section id="skills" className="skills-section">
         <div className="home-container">
@@ -152,7 +152,7 @@ function Home() {
       {/* AI Assistant */}
       <ChatWidget />
 
-      <Expertise />
+     
 
     </main>
   );
