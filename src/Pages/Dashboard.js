@@ -196,8 +196,11 @@ function Dashboard() {
                 professional insights.
               </p>
 
-              <Link to="/blog" className="dashboard-card-link">
-                View blog →
+              <Link
+                to="/blog-management"
+                className="dashboard-card-link"
+              >
+                Manage blog →
               </Link>
             </div>
           </motion.div>

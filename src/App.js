@@ -12,6 +12,7 @@ import AddProject from "./Pages/Addprojects";
 import Login from "./Pages/Login";
 import ProtectedRoute from "./components/ProtectedRoute";
 import BlogPost from "./Pages/BlogPost";
+import BlogManagement from "./Pages/BlogManagement";
 
 function App() {
   const [dark, setDark] = useState(() => {
@@ -60,6 +61,15 @@ function App() {
                 </ProtectedRoute>
               }
             />
+
+            <Route
+             path="/blog-management"
+             element={
+               <ProtectedRoute>
+                 <BlogManagement />
+               </ProtectedRoute>
+              }
+            /> 
 
             <Route path="/login" element={<Login />} />
           </Routes>
