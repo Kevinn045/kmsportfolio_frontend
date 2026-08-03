@@ -13,6 +13,7 @@ import Login from "./Pages/Login";
 import ProtectedRoute from "./components/ProtectedRoute";
 import BlogPost from "./Pages/BlogPost";
 import BlogManagement from "./Pages/BlogManagement";
+import ProjectManagement from "./Pages/ProjectManagement";
 
 function App() {
   const [dark, setDark] = useState(() => {
