@@ -131,19 +131,19 @@ function Dashboard() {
               <FaFolderOpen />
             </div>
 
-            <div className="dashboard-card-content">
-              <span>01</span>
+            <div className="card p-3 mb-3">
+             <h4>Projects</h4>
 
-              <h3>Projects</h3>
+             <p>
+                Manage the projects displayed on your portfolio.
+             </p>
 
-              <p>
-                Manage the projects displayed on your
-                portfolio and showcase your technical work.
-              </p>
-
-              <Link to="/#projects" className="dashboard-card-link">
-                View projects →
-              </Link>
+             <Link
+                to="/project-management"
+                className="dashboard-card-link"
+             >
+                Manage Projects →
+             </Link>
             </div>
           </motion.div>
 

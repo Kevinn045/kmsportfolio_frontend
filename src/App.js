@@ -75,6 +75,15 @@ function App() {
              element={<BlogPost />}
             />
 
+            <Route
+             path="/project-management"
+             element={
+              <ProtectedRoute>
+                <ProjectManagement />
+              </ProtectedRoute>
+  }
+            />
+
             <Route path="/login" element={<Login />} />
           </Routes>
         </main>

@@ -5919,3 +5919,445 @@ a {
   }
 
 }
+/* ========================================
+   PROJECT MANAGEMENT
+======================================== */
+
+.project-management-page {
+  min-height: 100vh;
+  background: #f8fafc;
+  padding: 60px 30px;
+}
+
+.project-management-page > * {
+  max-width: 1150px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
+/* Header */
+
+.project-management-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 30px;
+  margin-bottom: 45px;
+}
+
+.project-back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+
+  margin-bottom: 25px;
+
+  color: #6b7280;
+  text-decoration: none;
+
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.project-back-link:hover {
+  color: #111827;
+}
+
+.project-management-header h1 {
+  margin: 0;
+
+  color: #111827;
+
+  font-size: clamp(2.3rem, 5vw, 4rem);
+  letter-spacing: -2px;
+}
+
+.project-management-header > div > p:last-child {
+  color: #6b7280;
+}
+
+
+/* Buttons */
+
+.project-new-button,
+.project-save-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+
+  padding: 13px 19px;
+
+  border: none;
+  border-radius: 10px;
+
+  background: #111827;
+  color: white;
+
+  font-weight: 600;
+  cursor: pointer;
+
+  transition: 0.2s ease;
+}
+
+.project-new-button:hover,
+.project-save-button:hover {
+  transform: translateY(-2px);
+  background: #000;
+}
+
+
+/* Editor */
+
+.project-editor {
+  margin-bottom: 60px;
+
+  padding: 35px;
+
+  background: white;
+
+  border: 1px solid #e5e7eb;
+  border-radius: 18px;
+
+  box-shadow: 0 15px 45px rgba(0, 0, 0, 0.05);
+}
+
+.project-editor-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  margin-bottom: 30px;
+}
+
+.project-editor-header h2 {
+  margin: 0;
+  color: #111827;
+}
+
+.project-cancel-button {
+  border: none;
+  background: transparent;
+
+  color: #6b7280;
+
+  cursor: pointer;
+}
+
+.project-cancel-button:hover {
+  color: #111827;
+}
+
+.project-editor form {
+  display: flex;
+  flex-direction: column;
+}
+
+.project-editor label {
+  margin: 18px 0 8px;
+
+  color: #374151;
+
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+.project-editor input,
+.project-editor textarea {
+  width: 100%;
+  box-sizing: border-box;
+
+  padding: 13px 15px;
+
+  border: 1px solid #d1d5db;
+  border-radius: 9px;
+
+  background: #fafafa;
+
+  font-family: inherit;
+
+  outline: none;
+}
+
+.project-editor textarea {
+  resize: vertical;
+  line-height: 1.7;
+}
+
+.project-editor input:focus,
+.project-editor textarea:focus {
+  border-color: #111827;
+  background: white;
+}
+
+.project-editor small {
+  margin-top: 7px;
+  color: #9ca3af;
+}
+
+.project-form-two-column {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.project-form-two-column input {
+  width: 100%;
+}
+
+.project-save-button {
+  align-self: flex-start;
+  margin-top: 25px;
+}
+
+
+/* List */
+
+.project-management-list {
+  margin-top: 30px;
+}
+
+.project-list-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+
+  margin-bottom: 25px;
+}
+
+.project-list-heading h2 {
+  margin: 0;
+  color: #111827;
+}
+
+.project-list-heading > span {
+  color: #9ca3af;
+  font-size: 0.8rem;
+}
+
+
+/* Grid */
+
+.project-admin-grid {
+  display: grid;
+
+  grid-template-columns: repeat(2, 1fr);
+
+  gap: 22px;
+}
+
+
+/* Card */
+
+.project-admin-card {
+  overflow: hidden;
+
+  background: white;
+
+  border: 1px solid #e5e7eb;
+  border-radius: 17px;
+
+  box-shadow: 0 10px 35px rgba(0, 0, 0, 0.04);
+}
+
+.project-admin-image {
+  width: 100%;
+  height: 230px;
+}
+
+.project-admin-image img {
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+}
+
+.project-image-placeholder {
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: #111827;
+
+  color: #6b7280;
+
+  font-size: 1.7rem;
+  font-weight: 800;
+  letter-spacing: 4px;
+}
+
+.project-admin-content {
+  padding: 25px;
+}
+
+.project-admin-content h3 {
+  margin: 0 0 10px;
+
+  color: #111827;
+
+  font-size: 1.25rem;
+}
+
+.project-admin-content > p {
+  color: #6b7280;
+
+  font-size: 0.85rem;
+  line-height: 1.7;
+}
+
+
+/* Technologies */
+
+.project-admin-technologies {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+
+  margin-top: 18px;
+}
+
+.project-admin-technologies span {
+  padding: 5px 9px;
+
+  border-radius: 6px;
+
+  background: #f3f4f6;
+
+  color: #374151;
+
+  font-size: 0.7rem;
+  font-weight: 600;
+}
+
+
+/* External links */
+
+.project-admin-links {
+  display: flex;
+  gap: 15px;
+
+  margin-top: 20px;
+}
+
+.project-admin-links a {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+
+  color: #4b5563;
+
+  font-size: 0.75rem;
+  font-weight: 600;
+
+  text-decoration: none;
+}
+
+.project-admin-links a:hover {
+  color: #111827;
+}
+
+
+/* Actions */
+
+.project-admin-actions {
+  display: flex;
+  gap: 10px;
+
+  margin-top: 22px;
+  padding-top: 18px;
+
+  border-top: 1px solid #f0f0f0;
+}
+
+.project-edit-button,
+.project-delete-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+
+  padding: 9px 13px;
+
+  border-radius: 8px;
+
+  font-size: 0.75rem;
+  font-weight: 600;
+
+  cursor: pointer;
+}
+
+.project-edit-button {
+  border: 1px solid #d1d5db;
+  background: white;
+  color: #111827;
+}
+
+.project-delete-button {
+  border: 1px solid #fecaca;
+  background: white;
+  color: #b91c1c;
+}
+
+.project-edit-button:hover {
+  background: #f9fafb;
+}
+
+.project-delete-button:hover {
+  background: #fef2f2;
+}
+
+
+/* Empty/loading */
+
+.project-status {
+  padding: 70px 20px;
+
+  text-align: center;
+
+  background: white;
+
+  border: 1px dashed #d1d5db;
+  border-radius: 17px;
+}
+
+.project-status h3 {
+  color: #111827;
+}
+
+.project-status p {
+  color: #6b7280;
+
+  margin-bottom: 25px;
+}
+
+
+/* Mobile */
+
+@media (max-width: 750px) {
+
+  .project-management-page {
+    padding: 40px 18px;
+  }
+
+  .project-management-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .project-editor {
+    padding: 22px;
+  }
+
+  .project-form-two-column {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  .project-admin-grid {
+    grid-template-columns: 1fr;
+  }
+
+}
