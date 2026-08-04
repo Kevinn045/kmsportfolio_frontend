@@ -14,6 +14,7 @@ import ProtectedRoute from "./components/ProtectedRoute";
 import BlogPost from "./Pages/BlogPost";
 import BlogManagement from "./Pages/BlogManagement";
 import ProjectManagement from "./Pages/ProjectManagement";
+import Messages from "./Pages/Messages";
 
 function App() {
   const [dark, setDark] = useState(() => {
@@ -83,6 +84,15 @@ function App() {
                 <ProjectManagement />
               </ProtectedRoute>
   }
+            />
+
+            <Route
+              path="/messages"
+              element={
+                <ProtectedRoute>
+                  <Messages />
+                </ProtectedRoute>
+             }
             />
 
             <Route path="/login" element={<Login />} />

@@ -215,19 +215,13 @@ function Dashboard() {
               <FaEnvelope />
             </div>
 
-            <div className="dashboard-card-content">
-              <span>04</span>
-
-              <h3>Messages</h3>
-
-              <p>
-                View messages submitted through your portfolio
-                contact form.
-              </p>
-
-              <span className="dashboard-coming-soon">
-                Coming soon
-              </span>
+            <div
+              className="card p-3 mb-3"
+              style={{ cursor: "pointer" }}
+              onClick={() => window.location.href = "/messages"}
+            >
+              <h4>Messages</h4>
+              <p>View contact messages</p>
             </div>
           </motion.div>
 
