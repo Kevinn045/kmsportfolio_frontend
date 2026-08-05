@@ -19,28 +19,23 @@ function Messages() {
     };
 
     useEffect(() => {
-        fetchMessages();
-    }, []);
+    const token = localStorage.getItem("access");
 
-    const toggleReadStatus = async (message) => {
-        try {
-            const response = await api.patch(
-                `messages/${message.id}/read/`,
-                {
-                    is_read: !message.is_read,
-                }
-            );
+    console.log("ACCESS TOKEN:", token);
 
-            setMessages((prev) =>
-                prev.map((item) =>
-                    item.id === message.id ? response.data : item
-                )
-            );
-        } catch (err) {
-            console.error(err);
-            alert("Failed to update message.");
-        }
-    };
+    api.get("messages/")
+        .then((res) => {
+            console.log("MESSAGES:", res.data);
+            setMessages(res.data);
+        })
+        .catch((err) => {
+            console.log("MESSAGE ERROR:", err.response?.status);
+            console.log("MESSAGE ERROR DATA:", err.response?.data);
+        })
+        .finally(() => {
+            setLoading(false);
+        });
+}, []);
 
     const deleteMessage = async (id) => {
         const confirmed = window.confirm(
