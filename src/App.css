@@ -6361,3 +6361,72 @@ a {
   }
 
 }
+.dashboard-message-card {
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.dashboard-message-card:hover {
+    transform: translateY(-3px);
+}
+
+.dashboard-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.unread-badge {
+    min-width: 28px;
+    height: 28px;
+    padding: 0 8px;
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    font-weight: 700;
+    background: #111;
+    color: white;
+}
+
+.message-name-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.message-status {
+    font-size: 10px;
+    font-weight: 700;
+    padding: 4px 8px;
+    border-radius: 20px;
+}
+
+.message-status.unread {
+    background: #111;
+    color: white;
+}
+
+.message-status.read {
+    background: #e5e5e5;
+    color: #555;
+}
+
+.message-unread {
+    border-left: 4px solid #111;
+}
+
+.message-read {
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.message-delete {
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    color: #b00020;
+}

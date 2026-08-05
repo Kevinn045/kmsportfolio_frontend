@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import api from "../api";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import {
@@ -15,15 +16,23 @@ import api from "../api";
 
 function Dashboard() {
   const [user, setUser] = useState(null);
+  const [unreadMessages, setUnreadMessages] = useState(0);
 
-  useEffect(() => {
-    api
-      .get("profile/")
-      .then((res) => setUser(res.data))
-      .catch((err) => {
-        console.error(err);
-      });
-  }, []);
+ useEffect(() => {
+    api.get("profile/")
+        .then((res) => setUser(res.data))
+        .catch(console.error);
+
+    api.get("messages/")
+        .then((res) => {
+            const unread = res.data.filter(
+                (message) => !message.is_read
+            ).length;
+
+            setUnreadMessages(unread);
+        })
+        .catch(console.error);
+ }, []);
 
   const logout = () => {
     localStorage.removeItem("access");
@@ -216,12 +225,26 @@ function Dashboard() {
             </div>
 
             <div
-              className="card p-3 mb-3"
-              style={{ cursor: "pointer" }}
+              className="card p-3 mb-3 dashboard-message-card"
               onClick={() => window.location.href = "/messages"}
             >
-              <h4>Messages</h4>
-              <p>View contact messages</p>
+              <div className="dashboard-card-header">
+                <h4>Messages</h4>
+
+                {unreadMessages > 0 && (
+                  <span className="unread-badge">
+                    {unreadMessages}
+                  </span>
+                )}
+              </div>
+
+              <p>
+                {unreadMessages > 0
+                  ? `${unreadMessages} unread ${
+                    unreadMessages === 1 ? "message" : "messages"
+                    }`
+                  : "No unread messages"}
+              </p>
             </div>
           </motion.div>
 

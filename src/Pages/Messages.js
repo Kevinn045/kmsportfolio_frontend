@@ -22,6 +22,26 @@ function Messages() {
         fetchMessages();
     }, []);
 
+    const toggleReadStatus = async (message) => {
+        try {
+            const response = await api.patch(
+                `messages/${message.id}/read/`,
+                {
+                    is_read: !message.is_read,
+                }
+            );
+
+            setMessages((prev) =>
+                prev.map((item) =>
+                    item.id === message.id ? response.data : item
+                )
+            );
+        } catch (err) {
+            console.error(err);
+            alert("Failed to update message.");
+        }
+    };
+
     const deleteMessage = async (id) => {
         const confirmed = window.confirm(
             "Are you sure you want to delete this message?"
@@ -41,6 +61,10 @@ function Messages() {
         }
     };
 
+    const unreadCount = messages.filter(
+        (message) => !message.is_read
+    ).length;
+
     if (loading) {
         return (
             <div className="messages-page">
@@ -58,15 +82,17 @@ function Messages() {
                 <div className="messages-header">
                     <div>
                         <p className="messages-label">INBOX</p>
+
                         <h1>Messages</h1>
+
                         <p>
-                            Messages received through your portfolio contact form.
+                            Messages received through your portfolio
+                            contact form.
                         </p>
                     </div>
 
                     <div className="message-count">
-                        {messages.length}{" "}
-                        {messages.length === 1 ? "Message" : "Messages"}
+                        {unreadCount} unread
                     </div>
                 </div>
 
@@ -79,31 +105,61 @@ function Messages() {
                 {!error && messages.length === 0 && (
                     <div className="empty-messages">
                         <div className="empty-icon">✉</div>
+
                         <h3>No messages yet</h3>
+
                         <p>
-                            Messages submitted through your contact form
-                            will appear here.
+                            Messages submitted through your contact
+                            form will appear here.
                         </p>
                     </div>
                 )}
 
                 <div className="messages-list">
+
                     {messages.map((message) => (
+
                         <article
-                            className="message-card"
+                            className={`message-card ${
+                                !message.is_read
+                                    ? "message-unread"
+                                    : ""
+                            }`}
                             key={message.id}
                         >
+
                             <div className="message-top">
 
                                 <div>
-                                    <h3>{message.name}</h3>
-                                    <a href={`mailto:${message.email}`}>
+                                    <div className="message-name-row">
+
+                                        <h3>{message.name}</h3>
+
+                                        <span
+                                            className={
+                                                message.is_read
+                                                    ? "message-status read"
+                                                    : "message-status unread"
+                                            }
+                                        >
+                                            {message.is_read
+                                                ? "READ"
+                                                : "UNREAD"}
+                                        </span>
+
+                                    </div>
+
+                                    <a
+                                        href={`mailto:${message.email}`}
+                                    >
                                         {message.email}
                                     </a>
                                 </div>
 
                                 <span className="message-date">
-                                    {new Date(message.created).toLocaleDateString()}
+                                    {new Date(
+                                        message.created
+                                    ).toLocaleDateString()}
                                 </span>
 
                             </div>
@@ -123,6 +179,17 @@ function Messages() {
 
                                 <button
                                     onClick={() =>
+                                        toggleReadStatus(message)
+                                    }
+                                    className="message-read"
+                                >
+                                    {message.is_read
+                                        ? "Mark unread"
+                                        : "Mark as read"}
+                                </button>
+
+                                <button
+                                    onClick={() =>
                                         deleteMessage(message.id)
                                     }
                                     className="message-delete"
@@ -131,8 +198,11 @@ function Messages() {
                                 </button>
 
                             </div>
+
                         </article>
+
                     ))}
+
                 </div>
 
             </div>
