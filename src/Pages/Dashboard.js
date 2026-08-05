@@ -326,9 +326,12 @@ function Dashboard() {
               interact with your portfolio.
             </p>
 
-            <span className="dashboard-coming-soon">
-              Coming soon
-            </span>
+            <Link
+              to="/analytics"
+              className="dashboard-card-link"
+            >
+              View Analytics →
+            </Link>
           </motion.div>
 
         </div>

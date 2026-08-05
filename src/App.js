@@ -15,6 +15,7 @@ import BlogPost from "./Pages/BlogPost";
 import BlogManagement from "./Pages/BlogManagement";
 import ProjectManagement from "./Pages/ProjectManagement";
 import Messages from "./Pages/Messages";
+import Analytics from "./pages/Analytics";
 
 function App() {
   const [dark, setDark] = useState(() => {
@@ -94,6 +95,7 @@ function App() {
                 </ProtectedRoute>
              }
             />
+            <Route path="/analytics" element={<Analytics />} />
 
             <Route path="/login" element={<Login />} />
           </Routes>
