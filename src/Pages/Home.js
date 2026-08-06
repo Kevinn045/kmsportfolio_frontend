@@ -1,3 +1,5 @@
+import { useEffect } from "react";
+import api from "../api";
 
 import Header from "../components/Header";
 import Projects from "../components/Projects";
@@ -6,6 +8,24 @@ import ChatWidget from "../components/ChatWidget";
 import Expertise from "../components/Expertise";
 
 function Home() {
+
+  useEffect(() => {
+    const lastVisit = localStorage.getItem("portfolio_visit");
+
+    const now = Date.now();
+
+    if (!lastVisit || now - Number(lastVisit) > 24 * 60 * 60 * 1000) {
+
+        api.get("track/")
+            .then(() => {
+                localStorage.setItem("portfolio_visit", now.toString());
+            })
+            .catch(console.error);
+
+    }
+
+}, []);
+
   return (
     <main className="home-page">
 
