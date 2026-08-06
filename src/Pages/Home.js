@@ -13,20 +13,22 @@ function Home() {
 
   useEffect(() => {
     const lastVisit = localStorage.getItem("portfolio_visit");
-
     const now = Date.now();
 
-    if (!lastVisit || now - Number(lastVisit) > 24 * 60 * 60 * 1000) {
-
-        api.get("track/")
-            .then(() => {
-                localStorage.setItem("portfolio_visit", now.toString());
-            })
-            .catch(console.error);
-
+    if (
+      !lastVisit ||
+      now - Number(lastVisit) > 24 * 60 * 60 * 1000
+    ) {
+      api.get("track/")
+        .then(() => {
+          localStorage.setItem(
+            "portfolio_visit",
+            now.toString()
+          );
+        })
+        .catch(console.error);
     }
-
-}, []);
+  }, []);
 
   return (
     <main className="home-page">
@@ -91,9 +93,16 @@ function Home() {
         </div>
       </section>
 
-      <Experience />
-      
-      <Expertise />
+      {/* NEW - Experience */}
+      <section id="experience">
+        <Experience />
+      </section>
+
+      {/* Existing Expertise */}
+      <section id="expertise">
+        <Expertise />
+      </section>
+
       {/* Skills */}
       <section id="skills" className="skills-section">
         <div className="home-container">
@@ -164,11 +173,15 @@ function Home() {
         </div>
       </section>
 
-      <Services />
+      {/* NEW - Services */}
+      <section id="services">
+        <Services />
+      </section>
+
       {/* Projects */}
-    
-      <Projects />
-    
+      <section id="projects">
+        <Projects />
+      </section>
 
       {/* Contact */}
       <section id="contact">
@@ -178,11 +191,8 @@ function Home() {
       {/* AI Assistant */}
       <ChatWidget />
 
-     
-
     </main>
   );
 }
 
 export default Home;
-

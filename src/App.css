@@ -7173,3 +7173,193 @@ a {
     gap: 10px;
   }
 }
+/* =================================
+   EXPERIENCE SECTION
+================================= */
+
+.experience-section{
+    padding:100px 0;
+    background:var(--bg-primary);
+}
+
+.experience-card{
+    background:var(--card-bg,#fff);
+    border:1px solid rgba(0,0,0,.08);
+    border-radius:20px;
+    padding:40px;
+    box-shadow:0 15px 40px rgba(0,0,0,.08);
+    transition:.35s;
+}
+
+.experience-card:hover{
+    transform:translateY(-8px);
+    box-shadow:0 25px 55px rgba(0,0,0,.12);
+}
+
+.experience-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:25px;
+}
+
+.experience-top h3{
+    font-size:1.8rem;
+    margin-bottom:6px;
+}
+
+.experience-top span{
+    color:var(--text-secondary);
+    font-size:.95rem;
+}
+
+.experience-badge{
+    background:linear-gradient(135deg,#2563eb,#3b82f6);
+    color:#fff;
+    padding:8px 18px;
+    border-radius:40px;
+    font-size:.85rem;
+    font-weight:600;
+}
+
+.experience-description{
+    color:var(--text-secondary);
+    line-height:1.9;
+    margin-bottom:35px;
+    font-size:1.05rem;
+}
+
+.experience-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:20px;
+}
+
+.experience-item{
+    display:flex;
+    align-items:center;
+    gap:15px;
+    padding:18px;
+    border-radius:14px;
+    background:var(--bg-secondary);
+    transition:.3s;
+}
+
+.experience-item:hover{
+    transform:translateY(-5px);
+    background:#2563eb;
+    color:#fff;
+}
+
+.experience-item svg{
+    font-size:1.4rem;
+    color:var(--accent);
+}
+
+.experience-item:hover svg{
+    color:#fff;
+}
+
+
+
+/* =================================
+   SERVICES SECTION
+================================= */
+
+.services-section{
+    padding:100px 0;
+    background:var(--bg-secondary);
+}
+
+.services-grid{
+    margin-top:50px;
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:30px;
+}
+
+.service-card{
+    background:#fff;
+    border-radius:18px;
+    padding:35px;
+    border:1px solid rgba(0,0,0,.08);
+    transition:.35s;
+    box-shadow:0 12px 35px rgba(0,0,0,.06);
+}
+
+.service-card:hover{
+    transform:translateY(-10px);
+    box-shadow:0 20px 45px rgba(0,0,0,.12);
+}
+
+.service-card span{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    width:55px;
+    height:55px;
+    border-radius:50%;
+    background:#2563eb;
+    color:#fff;
+    font-size:1.1rem;
+    font-weight:700;
+    margin-bottom:20px;
+}
+
+.service-card h3{
+    font-size:1.35rem;
+    margin-bottom:15px;
+}
+
+.service-card p{
+    color:var(--text-secondary);
+    line-height:1.8;
+}
+
+
+
+/* =================================
+   SECTION SPACING
+================================= */
+
+#experience,
+#expertise,
+#skills,
+#services,
+#projects,
+#contact{
+    scroll-margin-top:90px;
+}
+
+
+
+/* =================================
+   MOBILE
+================================= */
+
+@media(max-width:768px){
+
+    .experience-section,
+    .services-section{
+        padding:70px 0;
+    }
+
+    .experience-card{
+        padding:25px;
+    }
+
+    .experience-top{
+        flex-direction:column;
+        align-items:flex-start;
+        gap:15px;
+    }
+
+    .experience-grid{
+        grid-template-columns:1fr;
+    }
+
+    .services-grid{
+        grid-template-columns:1fr;
+    }
+
+}
