@@ -15,7 +15,7 @@ import BlogPost from "./Pages/BlogPost";
 import BlogManagement from "./Pages/BlogManagement";
 import ProjectManagement from "./Pages/ProjectManagement";
 import Messages from "./Pages/Messages";
-import Analytics from "./pages/Analytics";
+import Analytics from "./Pages/Analytics";
 
 function App() {
   const [dark, setDark] = useState(() => {
@@ -84,7 +84,7 @@ function App() {
               <ProtectedRoute>
                 <ProjectManagement />
               </ProtectedRoute>
-  }
+              }
             />
 
             <Route
