@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { FaDownload } from "react-icons/fa";
 
 function Header() {
   return (
