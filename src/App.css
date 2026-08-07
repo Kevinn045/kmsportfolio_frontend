@@ -7363,3 +7363,21 @@ a {
     }
 
 }
+.download-cv-btn{
+    background:transparent;
+    border:2px solid #2563eb;
+    color:#2563eb;
+    display:flex;
+    align-items:center;
+    gap:10px;
+    padding:15px 28px;
+    border-radius:10px;
+    text-decoration:none;
+    font-weight:600;
+    transition:.3s ease;
+}
+
+.download-cv-btn:hover{
+    background:#2563eb;
+    color:#fff;
+}

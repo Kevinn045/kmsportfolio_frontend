@@ -52,6 +52,14 @@ function Header() {
               Let's Talk
             </a>
 
+            <a
+              href="/Kevin_Muse_CV.pdf"
+              download
+              className="hero-btn download-cv-btn"
+            >
+              <FaDownload />
+              <span>Download CV</span>
+            </a>
           </div>
 
           <div className="hero-tech">
