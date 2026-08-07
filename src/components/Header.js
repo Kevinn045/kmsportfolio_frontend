@@ -54,7 +54,7 @@ function Header() {
             </a>
 
             <a
-              href="/kmsportfolio_frontend/public/Kevin_Muse_cv.docx"
+              href = "/Kevin_Muse_cv.docx"
               download
               className="hero-btn download-cv-btn"
             >
