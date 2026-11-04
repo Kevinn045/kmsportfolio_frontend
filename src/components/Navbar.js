@@ -19,7 +19,10 @@ function Navbar() {
 
         {/* Brand */}
         <Link to="/" className="navbar-brand">
-          Kevin<span>.</span>
+          <img>
+           src="/kev.png"
+          </img>
+          <span>.</span>
         </Link>
 
         {/* Navigation */}
