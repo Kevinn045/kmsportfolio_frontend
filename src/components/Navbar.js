@@ -20,7 +20,7 @@ function Navbar() {
         {/* Brand */}
         <Link to="/" className="logo">
           <img
-           src="/kev.png"
+           src="/kev.png?v=2"
            alt="Kevin Simiyu Muse"
            className="logo-image"
           />
