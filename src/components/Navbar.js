@@ -18,10 +18,12 @@ function Navbar() {
       <div className="navbar-container">
 
         {/* Brand */}
-        <Link to="/" className="navbar-brand">
-          <img>
+        <Link to="/" className="logo">
+          <img
            src="/kev.png"
-          </img>
+           alt="Kevin Simiyu Muse"
+           className="logo-image"
+          />
           <span>.</span>
         </Link>
 
