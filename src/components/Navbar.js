@@ -18,12 +18,7 @@ function Navbar() {
       <div className="navbar-container">
 
         {/* Brand */}
-        <Link to="/" className="logo">
-          <img
-           src="/kev.png?v=2"
-           alt="Kevin Simiyu Muse"
-           className="logo-image"
-          />
+        <Link to="/>
           <span>.</span>
         </Link>
 
