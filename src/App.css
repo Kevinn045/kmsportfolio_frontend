@@ -7380,7 +7380,8 @@ a {
 .download-cv-btn:hover{
     background:#2563eb;
     color:#fff;
-   .logo-image {
+}
+.logo-image {
   width: 45px;
   height: 45px;
   object-fit: contain;
